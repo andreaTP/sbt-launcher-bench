@@ -15,12 +15,12 @@ function run {
 
 for i in {1..10}
 do
-  # prepare
-  # echo "parallel"
-  # run sbt-launch-1.0.4-SNAPSHOT-parallel.jar
+  prepare
+  echo "parallel"
+  run sbt-launch-1.0.4-SNAPSHOT-parallel.jar
 
-  # echo
-  # echo
+  echo
+  echo
 
   prepare
   echo "parallel-parallel"
@@ -29,10 +29,10 @@ do
   echo
   echo
 
-  # prepare
-  # echo "default"
-  # run sbt-launch-1.0.4-SNAPSHOT.jar
+  prepare
+  echo "default"
+  run sbt-launch-1.0.4-SNAPSHOT.jar
 
-  # echo
-  # echo
+  echo
+  echo
 done

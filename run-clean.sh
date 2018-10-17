@@ -19,7 +19,20 @@ do
   echo "parallel"
   run sbt-launch-1.0.4-SNAPSHOT-parallel.jar
 
+  echo
+  echo
+
+  prepare
+  echo "parallel-parallel"
+  run sbt-launch-1.0.4-SNAPSHOT-parallel-parallel.jar
+
+  echo
+  echo
+
   prepare
   echo "default"
   run sbt-launch-1.0.4-SNAPSHOT.jar
+
+  echo
+  echo
 done

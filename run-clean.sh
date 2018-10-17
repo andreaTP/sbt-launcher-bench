@@ -13,21 +13,21 @@ function run {
   time sbt -sbt-jar $1 -ivy ./ivy2 -sbt-dir ./sbt exit > /dev/null 2> /dev/null
 }
 
-for i in {1..1}
+for i in {1..3}
 do
-  # prepare
-  # echo "parallel"
-  # run sbt-launch-1.0.4-SNAPSHOT-parallel.jar
+  prepare
+  echo "parallel"
+  run sbt-launch-1.0.4-SNAPSHOT-parallel.jar
 
-  # echo
-  # echo
+  echo
+  echo
 
-  # prepare
-  # echo "parallel-parallel"
-  # run sbt-launch-1.0.4-SNAPSHOT-parallel-parallel.jar
+  prepare
+  echo "parallel-parallel"
+  run sbt-launch-1.0.4-SNAPSHOT-parallel-parallel.jar
 
-  # echo
-  # echo
+  echo
+  echo
 
   prepare
   echo "fixed"
@@ -36,10 +36,10 @@ do
   echo
   echo
 
-  # prepare
-  # echo "default"
-  # run sbt-launch-1.0.4-SNAPSHOT.jar
+  prepare
+  echo "default"
+  run sbt-launch-1.0.4-SNAPSHOT.jar
 
-  # echo
-  # echo
+  echo
+  echo
 done

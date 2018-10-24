@@ -6,7 +6,7 @@ function prepare {
   rm -rf ./ivy2
 
   mkdir project
-  echo "sbt.version=1.2.4" > project/build.properties
+  echo "sbt.version=1.1.1" > project/build.properties
 }
 
 function run {
@@ -16,30 +16,17 @@ function run {
 for i in {1..3}
 do
   prepare
-  echo "parallel"
-  run sbt-launch-1.0.4-SNAPSHOT-parallel.jar
-
-  echo
-  echo
-
-  prepare
-  echo "parallel-parallel"
-  run sbt-launch-1.0.4-SNAPSHOT-parallel-parallel.jar
-
-  echo
-  echo
-
-  prepare
-  echo "fixed"
-  run sbt-launch-1.0.4-SNAPSHOT-fixed.jar
-
-  echo
-  echo
-
-  prepare
   echo "default"
-  run sbt-launch-1.0.4-SNAPSHOT.jar
+  run sbt-launch-1.0.4-SNAPSHOT-default.jar
 
   echo
   echo
+
+  prepare
+  echo "big"
+  run sbt-launch-1.0.4-SNAPSHOT-big.jar
+
+  echo
+  echo
+
 done

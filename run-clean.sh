@@ -9,24 +9,33 @@ function prepare {
   echo "sbt.version=1.1.1" > project/build.properties
 }
 
-function run {
-  time sbt -sbt-jar $1 -ivy ./ivy2 -sbt-dir ./sbt exit > /dev/null 2> /dev/null
+default=0
+big=0
+
+function runDefault {
+  tmp=`(time -p sbt -sbt-jar sbt-launch-1.0.4-SNAPSHOT-default.jar -ivy ./ivy2 -sbt-dir ./sbt exit) 2>&1 | grep real | sed "s|real ||" | sed "s|[.].*$||"`
+  default=`expr $default + $tmp`
+}
+
+function runBig {
+  tmp=`(time -p sbt -sbt-jar sbt-launch-1.0.4-SNAPSHOT-big.jar -ivy ./ivy2 -sbt-dir ./sbt exit) 2>&1 | grep real | sed "s|real ||" | sed "s|[.].*$||"`
+  big=`expr $big + $tmp`
 }
 
 for i in {1..3}
 do
   prepare
-  echo "default"
-  run sbt-launch-1.0.4-SNAPSHOT-default.jar
-
-  echo
-  echo
+  runDefault
 
   prepare
-  echo "big"
-  run sbt-launch-1.0.4-SNAPSHOT-big.jar
-
-  echo
-  echo
-
+  runBig
 done
+
+default=`expr $default / 3 | sed "s|[.].*$||"`
+big=`expr $big / 3 | sed "s|[.].*$||"`
+
+imp=`expr $default / $big`
+
+echo "|default|big|diff|"
+echo "|---|---|---|"
+echo "|$default s|$big s|$imp X|"
